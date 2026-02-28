@@ -1,9 +1,10 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import './Country.css'
 
-const Country = ({ country }) => {
+const Country = ({ country,handleVisitedCountries }) => {
     console.log(country);
     const [visited, setVisited] = useState(false);
+    
     const handleVisit = () => {
         // if(visited){
         //     setVisited(false)
@@ -11,13 +12,17 @@ const Country = ({ country }) => {
         // else{
         //     setVisited(true)
         // }
+
+
         // setVisited(visited ? false: true)
-        setVisited(!visited)
+        setVisited(!visited);
+       
+        handleVisitedCountries (country);
 
     }
     return (
         <div>
-            <div className='card'>
+            <div className={visited?'card cardBg':'card'}>
                 <img src={country.flags.flags.png} alt={country.flags.flags.alt} srcset="" />
                 <h3>Country Name:  {country.name.common}</h3>
                 <p>Population: {country.population.population}
